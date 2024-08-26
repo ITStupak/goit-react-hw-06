@@ -41,7 +41,7 @@ const ContactForm = ({ onAddContact }) => {
               type="text"
               name="contactName"
               placeholder="Enter contact name..."
-              autoComplete="off"
+              // autoComplete="off"
               required
             />
             <ErrorMessage
@@ -58,7 +58,7 @@ const ContactForm = ({ onAddContact }) => {
               type="tel"
               name="contactNumber"
               placeholder="Enter phone number as: xxx-xx-xx"
-              autoComplete="off"
+              // autoComplete="off"
               required
             />
             <ErrorMessage
