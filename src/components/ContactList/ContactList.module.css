@@ -2,7 +2,7 @@
   padding: 8px 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 16px;
 }
 .card {
@@ -13,7 +13,13 @@
   padding: 8px;
   border: 1px solid rgb(60, 60, 60);
   border-radius: 10px;
-  background-color: rgb(194, 220, 236);
+  background-color: rgba(194, 220, 236, 0.5);
   width: calc((100% - 48px) / 3);
   min-width: 304px;
+  transition: border cubic-bezier(0, 4, 1, 4) 250ms;
+}
+.card:hover {
+  border: 1px solid blue;
+  background-color: rgb(194, 220, 236);
+  box-shadow: 0px 12px 12px 0px rgba(120, 123, 124, 1);
 }

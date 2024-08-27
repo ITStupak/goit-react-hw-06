@@ -1,8 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
+import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
-const ContactForm = ({ onAddContact }) => {
+const ContactForm = () => {
   const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
   const ContactSchema = Yup.object().shape({
@@ -17,13 +20,15 @@ const ContactForm = ({ onAddContact }) => {
 
   const INITIALS_VALUES = { contactName: "", contactNumber: "" };
 
-  const handleSubmit = (values, actions) => {
-    const contactObj = {
-      name: values.contactName,
-      number: values.contactNumber,
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, action) => {
+    const newContact = {
+      ...values,
+      id: nanoid(),
     };
-    onAddContact(contactObj);
-    actions.resetForm();
+    dispatch(addContact(newContact));
+    action.resetForm();
   };
 
   return (
@@ -41,7 +46,7 @@ const ContactForm = ({ onAddContact }) => {
               type="text"
               name="contactName"
               placeholder="Enter contact name..."
-              // autoComplete="off"
+              autoComplete="off"
               required
             />
             <ErrorMessage
@@ -58,7 +63,7 @@ const ContactForm = ({ onAddContact }) => {
               type="tel"
               name="contactNumber"
               placeholder="Enter phone number as: xxx-xx-xx"
-              // autoComplete="off"
+              autoComplete="off"
               required
             />
             <ErrorMessage
